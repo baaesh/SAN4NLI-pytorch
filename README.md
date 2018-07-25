@@ -47,5 +47,4 @@ Please install the following library requirements first.
  
  **Note:** 
 
-- The 
- 
+- The Dropout and Layer Normalization technique exist in this model, but it is not clear how those are applied.
