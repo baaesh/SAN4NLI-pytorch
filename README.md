@@ -27,11 +27,9 @@ Please install the following library requirements first.
 > python train.py --help
 
     usage: train.py [-h] [--batch-size BATCH_SIZE] [--data-type DATA_TYPE]
-                    [--dropout DROPOUT] [--epoch EPOCH] [--gpu GPU]
-                    [--hidden-dim HIDDEN_DIM] [--learning-rate LEARNING_RATE]
-                    [--print-freq PRINT_FREQ] [--weight-decay WEIGHT_DECAY]
-                    [--word-dim WORD_DIM] [--num-layers NUM_LAYERS]
-                    [--num-heads NUM_HEADS] [--d-e D_E] [--d-ff D_FF]
+                [--dropout DROPOUT] [--epoch EPOCH] [--gpu GPU]
+                [--learning-rate LEARNING_RATE] [--print-freq PRINT_FREQ]
+                [--word-dim WORD_DIM] [--num-heads NUM_HEADS] [--d-ff D_FF]
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -40,15 +38,12 @@ Please install the following library requirements first.
       --dropout DROPOUT
       --epoch EPOCH
       --gpu GPU
-      --hidden-dim HIDDEN_DIM
       --learning-rate LEARNING_RATE
       --print-freq PRINT_FREQ
-      --weight-decay WEIGHT_DECAY
       --word-dim WORD_DIM
-      --num-layers NUM_LAYERS
       --num-heads NUM_HEADS
-      --d-e D_E
       --d-ff D_FF
+
  
  **Note:** 
 
