@@ -85,14 +85,10 @@ def main():
 	parser.add_argument('--dropout', default=0.1, type=float)
 	parser.add_argument('--epoch', default=20, type=int)
 	parser.add_argument('--gpu', default=0, type=int)
-	parser.add_argument('--hidden-dim', default=600, type=int)
 	parser.add_argument('--learning-rate', default=0.001, type=float)
 	parser.add_argument('--print-freq', default=3000, type=int)
-	parser.add_argument('--weight-decay', default=5e-5, type=float)
 	parser.add_argument('--word-dim', default=300, type=int)
-	parser.add_argument('--num-layers', default=3, type=int)
 	parser.add_argument('--num-heads', default=5, type=int)
-	parser.add_argument('--d-e', default=300, type=int)
 	parser.add_argument('--d-ff', default=300 * 4, type=int)
 
 	args = parser.parse_args()
@@ -103,6 +99,7 @@ def main():
 	setattr(args, 'word_vocab_size', len(data.TEXT.vocab))
 	setattr(args, 'class_size', len(data.LABEL.vocab))
 	setattr(args, 'model_time', strftime('%H:%M:%S', gmtime()))
+	setattr(args, 'd_e', args.word_dim)
 	if args.gpu > -1:
 		setattr(args, 'device', "cuda:0")
 	else:

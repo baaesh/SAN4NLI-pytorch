@@ -48,10 +48,9 @@ if __name__ == '__main__':
     parser.add_argument('--data-type', default='SNLI')
     parser.add_argument('--dropout', default=0.1, type=float)
     parser.add_argument('--gpu', default=0, type=int)
-    parser.add_argument('--hidden-size', default=300, type=int)
     parser.add_argument('--word-dim', default=300, type=int)
-
-    parser.add_argument('--model-path', required=True)
+    parser.add_argument('--num-heads', default=5, type=int)
+    parser.add_argument('--d-ff', default=300 * 4, type=int)
 
     args = parser.parse_args()
 
@@ -60,6 +59,7 @@ if __name__ == '__main__':
 
     setattr(args, 'word_vocab_size', len(data.TEXT.vocab))
     setattr(args, 'class_size', len(data.LABEL.vocab))
+    setattr(args, 'd_e', args.word_dim)
     # if block size is lower than 0, a heuristic for block size is applied.
     if args.block_size < 0:
         args.block_size = data.block_size

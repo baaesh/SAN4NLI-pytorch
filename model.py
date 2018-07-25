@@ -62,7 +62,7 @@ class NN4SNLI(nn.Module):
 		# (batch, seq_len, 4 * 4 * d_e)
 		s = torch.cat([pre_s, hypo_s, (pre_s - hypo_s).abs(), pre_s * hypo_s], dim=-1)
 
-		#s = self.dropout(s)
+		s = self.dropout(s)
 		outputs = self.relu(self.layer_norm(self.fc(s)))
 		outputs = self.dropout(outputs)
 		outputs = self.fc_out(outputs)
