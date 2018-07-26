@@ -1,15 +1,17 @@
 # Self-Attention Network for Natural Language Inference
-Pytorch re-implementation of [Distance-based Self-Attention Network for Natural Language Inference](https://arxiv.org/abs/1712.02047) without distance mask.
+Pytorch re-implementation of [Distance-based Self-Attention Network for Natural Language Inference](https://arxiv.org/abs/1712.02047).
 
 This is an unofficial implementation.
 
 ## Results
 Dataset: [SNLI](https://nlp.stanford.edu/projects/snli/)
 
-| Model | Valid Acc(%) | Test Acc(%)
-| ----- | ------------ | -----------
+| Model | Valid Acc(%) | Test Acc(%) |
+| ----- | ------------ | ----------- |
+| Baseline from the paper | - | 86.3 |
 | Baseline from the paper (without distance mask) | - | 86.0 |
-| Re-implemenation | 86.2 | 85.7 |
+| Re-implemenation | - | - |
+| Re-implemenation (without distance mask) | 86.2 | 85.7 |
 
 ## Development Environment
 - OS: Ubuntu 16.04 LTS (64bit)
