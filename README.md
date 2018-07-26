@@ -46,5 +46,5 @@ Please install the following library requirements first.
 
  
  **Note:** 
-
+- Only codes to use SNLI as training data are implemented.
 - The Dropout and Layer Normalization technique exist in this model, but it is not clear how those are applied by the paper.
