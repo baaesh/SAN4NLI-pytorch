@@ -90,6 +90,7 @@ def main():
 	parser.add_argument('--word-dim', default=300, type=int)
 	parser.add_argument('--num-heads', default=5, type=int)
 	parser.add_argument('--d-ff', default=300 * 4, type=int)
+	parser.add_argument('--alpha', default=1.5, type=float)
 
 	args = parser.parse_args()
 

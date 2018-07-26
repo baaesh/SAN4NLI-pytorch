@@ -25,7 +25,7 @@ def get_direct_mask_tile(direction, sentence_len, device):
 		mask = torch.tril(mask, diagonal=-1)
 	else:
 		mask = torch.triu(mask, diagonal=1)
-	mask.view(1, sentence_len, sentence_len)
+	mask.unsqueeze_(0)
 	return mask
 
 
@@ -39,14 +39,24 @@ def get_rep_mask_tile(rep_mask):
 
 	return mask
 
+# Distance mask
+def get_dist_mask_tile(sentence_len, device):
+	mask = torch.FloatTensor(sentence_len, sentence_len).to(torch.device(device))
+	for i in range(sentence_len):
+		for j in range(sentence_len):
+			mask[i, j] = -abs(i-j)
+	mask.unsqueeze_(0)
+	return mask
+
 
 class Attention(nn.Module):
 
-	def __init__(self, d_model, direction, device='cuda:0'):
+	def __init__(self, d_model, direction, alpha, device='cuda:0'):
 		super(Attention, self).__init__()
 
 		self.direction = direction
 		self.device = device
+		self.alpha = alpha
 
 		self.scaling_factor = Variable(torch.Tensor([math.pow(d_model, 0.5)]), requires_grad=False).cuda()
 		self.softmax = nn.Softmax(dim=2)
@@ -58,7 +68,9 @@ class Attention(nn.Module):
 
 		direct_mask_tile = get_direct_mask_tile(self.direction, seq_len, self.device)
 		rep_mask_tile = get_rep_mask_tile(rep_mask)
+		dist_mask_tile = get_dist_mask_tile(seq_len, self.device)
 		mask = rep_mask_tile * direct_mask_tile
+		attn += self.alpha * dist_mask_tile
 
 		attn = masked_softmax(attn, mask, dim=2)
 		out = torch.bmm(attn, v)
@@ -80,7 +92,7 @@ class MultiHeadAttention(nn.Module):
 		self.w_ks = nn.Parameter(torch.FloatTensor(self.n_head, self.d_model, self.d_k))
 		self.w_vs = nn.Parameter(torch.FloatTensor(self.n_head, self.d_model, self.d_v))
 
-		self.attention = Attention(self.d_model, direction, device=args.device)
+		self.attention = Attention(self.d_model, direction, args.alpha, device=args.device)
 		self.layer_norm = nn.LayerNorm(int(self.d_k))
 		self.layer_norm2 = nn.LayerNorm(self.d_model)
 
