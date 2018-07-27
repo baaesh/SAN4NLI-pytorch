@@ -111,7 +111,7 @@ def main():
 
 	if not os.path.exists('saved_models'):
 		os.makedirs('saved_models')
-	torch.save(best_model.state_dict(), f'saved_models/BiLSM_GP_{args.data_type}_{args.model_time}.pt')
+	torch.save(best_model.state_dict(), f'saved_models/SAN4NLI_{args.data_type}_{args.model_time}.pt')
 
 	print('training finished!')
 
