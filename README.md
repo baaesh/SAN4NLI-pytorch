@@ -9,7 +9,7 @@ Dataset: [SNLI](https://nlp.stanford.edu/projects/snli/)
 | Model | Valid Acc(%) | Test Acc(%) |
 | ----- | ------------ | ----------- |
 | Baseline from the paper | - | 86.3 |
-| Re-implemenation | - | - |
+| Re-implemenation | 86.3 | 86.0 |
 | Baseline from the paper (without distance mask) | - | 86.0 |
 | Re-implemenation (without distance mask) | 86.2 | 85.7 |
 
